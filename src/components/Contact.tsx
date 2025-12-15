@@ -8,20 +8,20 @@ const contactLinks = [
   {
     icon: Mail,
     label: "Email",
-    value: "nagasairam.sunkara@gmail.com",
-    href: "mailto:nagasairam.sunkara@gmail.com",
+    value: "ramhere939@gmail.com",
+    href: "mailto:ramhere939@gmail.com",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/nagasairam17",
-    href: "https://linkedin.com/in/nagasairam17",
+    value: "www.linkedin.com/in/naga-sai-ram-sunkara-6302a8248",
+    href: "www.linkedin.com/in/naga-sai-ram-sunkara-6302a8248",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "github.com/nagasairam17",
-    href: "https://github.com/nagasairam17",
+    value: "https://github.com/NagaSaiRam89/",
+    href: "https://github.com/NagaSaiRam89/",
   },
 ];
 

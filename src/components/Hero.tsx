@@ -84,7 +84,7 @@ export function Hero() {
             </a>
             <div className="flex items-center gap-3">
               <a 
-                href="https://drive.google.com/file/d/1R4KoG3st9Qx8aZrBbQvKkbieXvheB37N/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1x7Ghyxt2ZDdTInU1_rEEKWqWgTR8ji0s/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -94,7 +94,7 @@ export function Hero() {
                 </Button>
               </a>
               <a 
-                href="https://github.com/nagasairam17" 
+                href="https://github.com/NagaSaiRam89/" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >

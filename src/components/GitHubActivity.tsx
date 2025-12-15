@@ -8,14 +8,14 @@ const codingProfiles = [
     platform: "LeetCode",
     problems: "600+",
     description: "Problems solved with focus on DSA fundamentals",
-    url: "https://leetcode.com/u/nagasairam17/",
+    url: "https://leetcode.com/u/ramhere939/",
     color: "text-amber-500",
   },
   {
     platform: "GeeksforGeeks",
     problems: "300+",
     description: "Practice across algorithms and data structures",
-    url: "https://www.geeksforgeeks.org/user/nagasairam17/",
+    url: "https://www.geeksforgeeks.org/profile/ramher550c",
     color: "text-green-500",
   },
 ];
@@ -115,7 +115,7 @@ export function GitHubActivity() {
             </div>
 
             <a
-              href="https://github.com/nagasairam17"
+              href="https://github.com/NagaSaiRam89/"
               target="_blank"
               rel="noopener noreferrer"
             >
