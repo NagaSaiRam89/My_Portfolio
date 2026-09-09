@@ -1,0 +1,147 @@
+[
+  {
+    "id": "profile",
+    "source": "Profile",
+    "text": "Naga Sai Ram Sunkara is a software engineer based in Bengaluru, Karnataka, India, working primarily on backend services. Contact: ramhere939@gmail.com, +91 83092 78299. GitHub github.com/NagaSaiRam89, LinkedIn linkedin.com/in/naga-sai-ram-sunkara-6302a8248, LeetCode leetcode.com/u/ramhere939, portfolio nagasairams-portfolio.com. He is open to backend engineering roles anywhere — remote or relocating — and is not restricted to any one city."
+  },
+  {
+    "id": "summary",
+    "source": "Summary",
+    "text": "Software engineer with six months of production experience building and debugging backend services that handle around 1,000 payments a day. Works across Java and Spring Boot, Node.js and TypeScript, React, and Python, with four deployed projects and 900+ solved coding problems behind the fundamentals. Comfortable picking up unfamiliar codebases and tools quickly. MCA from NIT Raipur."
+  },
+  {
+    "id": "education-nit",
+    "source": "Education",
+    "text": "Master of Computer Applications (MCA) from the National Institute of Technology, Raipur, Chhattisgarh, from August 2023 to May 2026. Relevant coursework: Data Structures and Algorithms, Operating Systems, DBMS, Computer Networks, Distributed Systems. The degree is complete; he graduated in May 2026."
+  },
+  {
+    "id": "education-bsc",
+    "source": "Education",
+    "text": "Bachelor of Science in Computer Science from Adikavi Nannaya University, Rajahmundry, Andhra Pradesh, from June 2019 to May 2022."
+  },
+  {
+    "id": "antino-role",
+    "source": "Experience — Antino Labs",
+    "text": "Software Development Intern, Backend Engineering at Antino Labs Pvt. Ltd. in Bengaluru, from January 2026 to June 2026. The focus was backend, payments and integrations. This is six months of production backend experience."
+  },
+  {
+    "id": "antino-payments",
+    "source": "Experience — Antino Labs",
+    "text": "At Antino Labs, more than 1,000 payments a day run through backend services he built, connecting an internal platform to two outside payment companies that each had their own request format and error handling. He normalised those differences so everything downstream could treat them the same way."
+  },
+  {
+    "id": "antino-idempotency",
+    "source": "Experience — Antino Labs",
+    "text": "At Antino Labs, payments were failing at random and some customers were charged twice. He reproduced the fault, traced it to endpoints that could not handle the same request arriving more than once, and rebuilt them to recognise and ignore repeats. Failed payments fell 30 percent. This is his clearest example of debugging a production issue end to end: symptom, reproduction, root cause, fix, measured result."
+  },
+  {
+    "id": "antino-modularity",
+    "source": "Experience — Antino Labs",
+    "text": "At Antino Labs he put 6 payment methods behind one interface, with new providers addable without rewriting what already worked, because each provider plugs in as a separate module. This is an example of designing for extension rather than rewriting."
+  },
+  {
+    "id": "antino-hardware",
+    "source": "Experience — Antino Labs",
+    "text": "At Antino Labs he built four services that kept more than 50 machines in the field in sync, exchanging live data with hardware over a secure channel on AWS. This is production experience with event-driven services and hardware integration."
+  },
+  {
+    "id": "antino-practice",
+    "source": "Experience — Antino Labs",
+    "text": "At Antino Labs he held automated test coverage above 80 percent on the services he owned, and shipped through Agile sprints with peer code reviews and releases that never took the system offline."
+  },
+  {
+    "id": "rivora-overview",
+    "source": "Project — Rivora",
+    "text": "Rivora is a collaborative recording platform, built end to end in Java and Spring Boot with REST services, MongoDB storage, Redis caching, and a React interface on top. Node.js worker microservices handle the media pipeline and Kafka carries work between the services. It runs on Kubernetes. Stack: Java, Spring Boot, JUnit, Kafka, Kubernetes, React.js, Node.js, MongoDB, Redis, BullMQ, FFmpeg. Repository: github.com/NagaSaiRam89/rivora-spring."
+  },
+  {
+    "id": "rivora-performance",
+    "source": "Project — Rivora",
+    "text": "On Rivora, heavy media processing was holding up every request while it ran. He moved that work into the background so users get an answer immediately, which made responses 40 percent faster. Yes, he has used Kafka in production on this project, as the backbone carrying work between the Spring Boot core and the Node.js workers."
+  },
+  {
+    "id": "rivora-reliability",
+    "source": "Project — Rivora",
+    "text": "Rivora lost zero recordings across more than 100 sessions on unreliable connections, because audio saves in small pieces that retry on their own and stitch back together when the connection returns. This is a concrete example of designing for failure rather than assuming the happy path."
+  },
+  {
+    "id": "trashclash",
+    "source": "Project — Trash-Clash",
+    "text": "Trash-Clash is a full stack platform live on Render and Vercel, shipped solo across the whole stack: 15 or more REST endpoints over an 8-table PostgreSQL database, plus the React interface, logins and permissions on top. It deploys automatically on every push through GitHub Actions, with the test suite at 75 percent or better coverage catching regressions before they reach production. Stack: React.js, Express.js, Node.js, PostgreSQL, JWT, GitHub Actions, Jest. Repository: github.com/NagaSaiRam89/TrashClash."
+  },
+  {
+    "id": "snapstudy-outcome",
+    "source": "Project — SnapStudy AI",
+    "text": "SnapStudy AI is a document processing app that took first place, working solo, at the Connect N Code Hackathon 2026, which was sponsored by Google Gemini. He went from idea to a deployed demo inside the competition window. Stack: React.js, TypeScript, Google Gemini API, Tesseract OCR, PDF.js. Repository: github.com/ramhere939/snapstudyai."
+  },
+  {
+    "id": "snapstudy-how",
+    "source": "Project — SnapStudy AI",
+    "text": "SnapStudy AI chains OCR into model calls to pull structured data out of handwritten notes and PDFs of 50 or more pages, then turns the extracted topics into a study plan. PDF.js reads the text layer where a PDF has one; Tesseract OCRs the pages and photos where it does not. Both input paths converge on plain text before Gemini sees anything."
+  },
+  {
+    "id": "snapstudy-boundary",
+    "source": "Project — SnapStudy AI",
+    "text": "The central design decision in SnapStudy AI is where the model stops. Gemini handles extraction, which genuinely needs judgement because no parser survives real handwriting. The scheduling logic stays a fixed algorithm rather than the model's judgement, so the same notes always produce the same study plan. Scheduling is arithmetic over topics, dates and weightings, and arithmetic belongs in code where it is deterministic, testable and cheap. Everything upstream of that boundary is probabilistic; everything downstream is not. There is a full case study of this on the portfolio at /case/snapstudy."
+  },
+  {
+    "id": "twentyone-days",
+    "source": "Project — Projects in 21 Days",
+    "text": "Projects in 21 Days is an AI and ML portfolio: 21 AI projects built from raw data through to a working result, certified by GeeksforGeeks. It includes agents that decide what to look up, call the right tool and act on the result, plus retrieval systems that ground answers in real source documents. Stack: Python, LangChain, TensorFlow, PyTorch, scikit-learn, n8n. Repository: github.com/NagaSaiRam89/21_daysML."
+  },
+  {
+    "id": "cravier",
+    "source": "Project — Cravier",
+    "text": "Cravier is a sweet shop management system built test-first, with Test-Driven Development from the ground up, JWT authentication and normalised inventory data models. Built with React, Node.js, MongoDB and TypeScript. It is a secondary project, listed under 'Also built' on the portfolio."
+  },
+  {
+    "id": "skills-languages",
+    "source": "Skills — Languages",
+    "text": "Programming languages: Java, Python, JavaScript (ES6+), TypeScript, C++, SQL."
+  },
+  {
+    "id": "skills-backend",
+    "source": "Skills — Backend",
+    "text": "Backend: Spring Boot, Node.js, Express.js, NestJS, REST API design, microservices, event-driven architecture, Kafka, message queues including BullMQ, third-party API integration, idempotency and retry semantics. This is his primary area of work."
+  },
+  {
+    "id": "skills-frontend",
+    "source": "Skills — Frontend and Web",
+    "text": "Frontend and web: React.js, HTML5, CSS3, reusable component design, state management, asynchronous data fetching, JSON."
+  },
+  {
+    "id": "skills-databases",
+    "source": "Skills — Databases",
+    "text": "Databases: PostgreSQL, MongoDB, Redis, SQL, schema design, indexing, query optimisation, caching."
+  },
+  {
+    "id": "skills-ai",
+    "source": "Skills — AI and ML",
+    "text": "AI and ML: LangChain, RAG (retrieval-augmented generation), vector databases, Hugging Face, Google Gemini API, TensorFlow, PyTorch, scikit-learn, pandas, NumPy. He has shipped the Gemini API in production on SnapStudy AI, and builds retrieval systems and tool-calling agents. His stated principle is to keep deterministic logic outside the model."
+  },
+  {
+    "id": "skills-cloud",
+    "source": "Skills — Cloud and DevOps",
+    "text": "Cloud and DevOps: AWS, Docker, Kubernetes, Git, GitHub, GitHub Actions, CI/CD, Vercel, Render, Postman."
+  },
+  {
+    "id": "skills-fundamentals",
+    "source": "Skills — Fundamentals and practices",
+    "text": "Fundamentals: data structures and algorithms, object-oriented programming, system design, design patterns, complexity analysis. Practices: Agile and Scrum, code reviews, unit and integration testing with Jest and JUnit, debugging and root cause analysis, technical documentation."
+  },
+  {
+    "id": "opensource",
+    "source": "Open source",
+    "text": "Code accepted into GirlScript Summer of Code 2026 (GSSoC) after review by the project maintainers — backend contributions written to someone else's standards, in someone else's codebase, and merged upstream."
+  },
+  {
+    "id": "problem-solving",
+    "source": "Problem solving",
+    "text": "More than 900 coding problems solved in total: 600 or more on LeetCode and 300 or more on GeeksforGeeks, with an unbroken streak of 160 or more days."
+  },
+  {
+    "id": "certifications",
+    "source": "Certifications",
+    "text": "Certifications: Postman API Fundamentals Student Expert; AI and ML from NIT Kurukshetra; Full Stack Development from Udemy."
+  }
+]

@@ -1,8 +1,8 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/NagaSaiRam89/", label: "GitHub" },
-  { icon: Linkedin, href: "www.linkedin.com/in/naga-sai-ram-sunkara-6302a8248", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/NagaSaiRam89", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/naga-sai-ram-sunkara-6302a8248", label: "LinkedIn" },
   { icon: Mail, href: "mailto:ramhere939@gmail.com", label: "Email" },
 ];
 

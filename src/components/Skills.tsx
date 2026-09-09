@@ -1,65 +1,140 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useReveal } from "@/hooks/use-reveal";
 
 const skillCategories = [
   {
+    title: "Backend",
+    lead: true,
+    skills: [
+      "Spring Boot",
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "REST API design",
+      "Microservices",
+      "Event-driven architecture",
+      "Kafka",
+      "Message queues (BullMQ)",
+      "Third-party API integration",
+      "Idempotency & retry semantics",
+    ],
+  },
+  {
     title: "Languages",
-    skills: ["Java", "JavaScript", "TypeScript", "Python", "C/C++"],
+    skills: ["Java", "Python", "JavaScript (ES6+)", "TypeScript", "C++", "SQL"],
   },
   {
-    title: "Frontend",
-    skills: ["React.js", "Tailwind CSS", "Responsive UI", "Accessibility", "Framer Motion"],
+    title: "Databases",
+    skills: [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "SQL",
+      "Schema design",
+      "Indexing",
+      "Query optimisation",
+      "Caching",
+    ],
   },
   {
-    title: "Backend & Systems",
-    skills: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth 2.0", "BullMQ", "FFmpeg"],
+    title: "AI & ML",
+    lead: true,
+    skills: [
+      "Google Gemini API",
+      "LangChain",
+      "RAG",
+      "Vector databases",
+      "Hugging Face",
+      "TensorFlow",
+      "PyTorch",
+      "scikit-learn",
+      "pandas",
+      "NumPy",
+    ],
   },
   {
-    title: "Databases & Cloud",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "Cloudinary", "Render", "Vercel", "Google Drive API"],
+    title: "Frontend & Web",
+    skills: [
+      "React.js",
+      "HTML5",
+      "CSS3",
+      "Reusable component design",
+      "State management",
+      "Asynchronous data fetching",
+      "JSON",
+    ],
   },
   {
-    title: "Engineering Practices",
-    skills: ["TDD", "CI/CD", "Git", "GitHub", "OOP", "Async Processing", "System Design"],
+    title: "Cloud & DevOps",
+    skills: [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Git",
+      "GitHub",
+      "GitHub Actions",
+      "CI/CD",
+      "Vercel",
+      "Render",
+      "Postman",
+    ],
+  },
+  {
+    title: "Fundamentals",
+    skills: [
+      "Data structures & algorithms",
+      "Object-oriented programming",
+      "System design",
+      "Design patterns",
+      "Complexity analysis",
+    ],
+  },
+  {
+    title: "Practices",
+    skills: [
+      "Agile & Scrum",
+      "Code reviews",
+      "Unit & integration testing (Jest, JUnit)",
+      "Debugging & root cause analysis",
+      "Technical documentation",
+    ],
   },
 ];
 
+
 export function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, reveal } = useReveal();
 
   return (
     <section id="skills" className="py-24 md:py-32 bg-muted/30 relative">
       <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
+        <motion.div ref={ref} {...reveal(0, 40)} className="max-w-4xl mx-auto">
           {/* Section header */}
           <div className="mb-12">
             <span className="text-sm font-mono text-primary tracking-wider uppercase">
               Skills
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-              Technical expertise
+              What I work with
             </h2>
             <p className="text-muted-foreground text-lg">
-              A comprehensive toolkit for building modern web applications.
+              Backend first, because that is where most of the work happens.
+              The AI stack is the part I reach for when a problem genuinely needs
+              judgement rather than a parser.
             </p>
           </div>
 
           {/* Skills grid */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 * categoryIndex }}
-                className="card-elevated p-5 rounded-xl"
+                {...reveal(0.06 * categoryIndex)}
+                className={
+                  category.lead
+                    ? "card-elevated p-5 rounded-xl border-l-2 border-l-primary"
+                    : "p-5 rounded-xl card-glass"
+                }
               >
                 <h3 className="font-semibold text-sm text-primary mb-4 uppercase tracking-wider">
                   {category.title}
