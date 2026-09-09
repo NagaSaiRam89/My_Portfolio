@@ -6,11 +6,21 @@
  * only the question, take the nearest chunks by cosine similarity, and ask the
  * model to answer from those and nothing else.
  */
-import index from "./_index.json" with { type: "json" };
-
 const API_KEY = process.env.GEMINI_API_KEY;
 const CHAT_MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
-const EMBED_MODEL = index.model || "gemini-embedding-001";
+
+/**
+ * The pre-built index is loaded lazily: a static import of a file that
+ * `npm run embed` has not generated yet takes the whole function down with
+ * FUNCTION_INVOCATION_FAILED before the handler can report anything useful.
+ */
+let indexPromise;
+function loadIndex() {
+  indexPromise ??= import("./_index.json", { with: { type: "json" } })
+    .then((module) => module.default)
+    .catch(() => null);
+  return indexPromise;
+}
 
 const TOP_K = 6;
 const MAX_QUESTION_LENGTH = 400;
@@ -68,7 +78,9 @@ async function gemini(path, body) {
 
   if (!response.ok) {
     const detail = await response.text();
-    throw new Error(`Gemini ${path} returned ${response.status}: ${detail}`);
+    const error = new Error(`Gemini ${path} returned ${response.status}: ${detail}`);
+    error.status = response.status;
+    throw error;
   }
 
   return response.json();
@@ -103,6 +115,17 @@ export default async function handler(req, res) {
       error: `Keep it under ${MAX_QUESTION_LENGTH} characters.`,
     });
   }
+
+  const index = await loadIndex();
+  if (!index?.chunks?.length) {
+    console.error("[ask] api/_index.json is missing — run `npm run embed`.");
+    return res.status(503).json({
+      error:
+        "The assistant's search index hasn't been built yet. Email ramhere939@gmail.com in the meantime.",
+    });
+  }
+  const EMBED_MODEL =
+    process.env.GEMINI_EMBED_MODEL || index.model || "gemini-embedding-001";
 
   try {
     // 1. Embed the question in the same space as the corpus.
@@ -153,6 +176,17 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error("[ask]", error);
+
+    // 401/403 means the key is rejected or its project is blocked, and 404 a
+    // retired model id — both are configuration, not a transient outage. They
+    // are worth separating in the logs so the next person isn't guessing.
+    if (error.status === 401 || error.status === 403) {
+      return res.status(502).json({
+        error:
+          "The assistant's API key was rejected. Email ramhere939@gmail.com instead.",
+      });
+    }
+
     return res.status(502).json({
       error: `Couldn't reach the model. Email ramhere939@gmail.com instead.`,
     });
